@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+   <div class="w-full min-h-screen bg-zinc-900 text-white p-10">
+        <a href="/logout" class="px-3 py-2 bg-red-500 rounded-md mb-5 inline-block font-semibold">Logout</a>
+            <h1 class="text-2xl font-bold">Welcome, <%= user.name %></h1>
+            <h1 class="text-sm text-zinc-500 mt-3 ">You can create posts</h1>
+
+            <form action="/profile" class="space-y-4" name="body" method="post">
+                <textarea name="text" placeholder="Whats in your mind ?" class="w-1/5 block resize-none p-3 bg-transparent border border-zinc-700 rounded-md mt-3 outline-none " required></textarea>
+                <div class="flex justify-between w-1/6">
+                <input type="submit" value="Create post" class="bg-blue-500 px-3 py-2 rounded-md font-bold">
+                <a href="/feed" class="bg-yellow-500 text-lg rounded-md px-3 py-2 w-28 ml-5 text-center">Feed</a>
+                </div>
+            </form>
+
+            
+            
+
+            <% user.posts.forEach((post)=>{ %>
+            <div class="w-1/4 mt-10 p-5 border border-zinc-700 rounded-md space-y-3">
+                <h1 class="text-blue-500">@<%= user.name %></h1>
+                <p class="text-zinc-300 tracking-tight"> <%= post.content %></p>
+                <div >
+                    <h1><%= post.likes.length %> likes</h1>
+                    <a href="/like/<%= post._id %>" class="text-blue-500 text-lg">
+                        <% if(post.likes.indexOf(user._id) === -1){ %>
+                            <span>like</span>
+                        <% }else{ %>
+                            <span>unlike</span>
+                            <% } %>
+                              </a>
+                    <a href="/edit/<%= post._id %>" class="text-zinc-500 text-lg ml-2">Edit</a>
+                    <a href="/delete/<%= post._id %>" class="text-red-700 text-lg ml-2">Delete</a>
+                </div>
+            </div>
+          <%  }) %>
+
+
+            
+   </div>
+</body>
+</html>

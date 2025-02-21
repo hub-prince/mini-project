@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+   <div class="w-full h-screen bg-zinc-900 text-white p-10">
+            
+            <h1 class="text-lg text-zinc-300 mt-3 ">You can edit posts</h1>
+
+            <form action="/edit/<%= post._id %>" class="space-y-4" name="body" method="post">
+                <textarea name="text" class="w-1/5 block resize-none p-3 bg-transparent border border-zinc-700 rounded-md mt-3 outline-none "> <%= post.content %></textarea>
+                <input type="submit" value="update post" class="bg-yellow-500 px-3 py-2 rounded-md font-bold">
+            </form>
+
+            
+            
+
+             
+
+
+            
+   </div>
+</body>
+</html>
